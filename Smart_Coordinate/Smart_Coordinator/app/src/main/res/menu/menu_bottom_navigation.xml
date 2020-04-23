@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/closet"
+        android:title="Closet"
+        android:fontFamily="@font/gcmedium"
+        android:icon="@drawable/closet"
+        android:text="Closet" />
+    <item
+        android:id="@+id/calendar"
+        android:title="Calendar"
+        android:fontFamily="@font/gcmedium"
+        android:icon="@drawable/calendar"
+        android:text="Calendar" />
+    <item
+        android:id="@+id/weather"
+        android:title="Weather"
+        android:fontFamily="@font/gcmedium"
+        android:icon="@drawable/sun"
+        android:text="Weather" />
+</menu>
+
