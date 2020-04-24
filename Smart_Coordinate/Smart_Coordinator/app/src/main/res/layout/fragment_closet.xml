@@ -20,8 +20,30 @@
         android:layout_height="400dp"
         android:scaleType="fitXY"
         android:src="@drawable/closet2"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="40dp"
         />
+
+    <ImageView
+        android:id="@+id/capture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp" />
+
+    <Button
+        android:id="@+id/cameraButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="100dp"
+        android:text="camera" />
+
+    <Button
+        android:id="@+id/albumButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="100dp"
+        android:text="camera" />
 
 </RelativeLayout>
