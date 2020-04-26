@@ -33,7 +33,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.shuvic.alumni.cameraalbum"
+            android:authorities="com.example.smart_coordinator"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

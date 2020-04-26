@@ -6,11 +6,11 @@
     android:background="#0079DC">
 
     <TextView
+        android:id="@+id/customTitle"
         android:text="Smart Coordinator"
         android:fontFamily="@font/gcmedium"
         android:textSize="20sp"
         android:textColor="#ffff"
-        android:id="@+id/customTitle"
         android:gravity="center_vertical"
         android:layout_marginLeft="125dp"
         android:layout_width="match_parent"
