@@ -45,4 +45,33 @@
         android:layout_marginTop="100dp"
         android:text="album" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:id="@+id/IPAddress"
+        android:text="192.168.219.106"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:id="@+id/portNumber"
+        android:text="7001"/>
+
+    <Button
+        android:id="@+id/connectServer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Connect to Server"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:text="Message from the Server ..."
+        android:id="@+id/responseText"/>
+
 </RelativeLayout>

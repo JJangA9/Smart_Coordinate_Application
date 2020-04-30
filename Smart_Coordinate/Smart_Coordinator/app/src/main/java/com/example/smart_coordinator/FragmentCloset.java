@@ -14,19 +14,34 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -44,6 +59,7 @@ public class FragmentCloset extends Fragment{
     private ImageView imageView;
     private Button cameraBtn;
     private Button albumBtn;
+    private Button connectServ;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -64,6 +80,7 @@ public class FragmentCloset extends Fragment{
         cameraBtn = (Button)view.findViewById(R.id.cameraButton);
         albumBtn = (Button)view.findViewById(R.id.albumButton);
         imageView = (ImageView)view.findViewById(R.id.capture);
+        connectServ = (Button)view.findViewById(R.id.connectServer);
 
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -92,10 +109,85 @@ public class FragmentCloset extends Fragment{
             }
         });
 
+        connectServ.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                connectServer(v);
+            }
+        });
         return view;
     }
 
-    @Override
+    void connectServer(View v){
+        EditText ipv4AddressView = mContext.findViewById(R.id.IPAddress);
+        String ipv4Address = ipv4AddressView.getText().toString();
+        EditText portNumberView = mContext.findViewById(R.id.portNumber);
+        String portNumber = portNumberView.getText().toString();
+
+        String postUrl= "http://"+ipv4Address+":"+portNumber+"/";
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+
+        //Read Bitmap
+        Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath, options);
+        Log.d("!!!", imageFilePath);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        RequestBody postBodyImage = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("image", "androidFlask.jpg", RequestBody.create(MediaType.parse("image/*jpg"), byteArray))
+                .build();
+
+        TextView responseText = mContext.findViewById(R.id.responseText);
+        responseText.setText("Please wait ...");
+
+        postRequest(postUrl, postBodyImage);
+    }
+
+    void postRequest(String postUrl, RequestBody postBody) {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(postUrl)
+                .post(postBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Cancel the post on failure.
+                call.cancel();
+
+                // In order to access the TextView inside the UI thread, the code is executed inside runOnUiThread()
+                mContext.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView responseText = mContext.findViewById(R.id.responseText);
+                        responseText.setText("Failed to Connect to Server");
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                // In order to access the TextView inside the UI thread, the code is executed inside runOnUiThread()
+                mContext.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView responseText = mContext.findViewById(R.id.responseText);
+                        try {
+                            responseText.setText(response.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == PICK_FROM_ALBUM && resultCode==RESULT_OK&&data!=null&&data.getData()!=null) {
             Uri selectedImageUri = data.getData();
@@ -104,6 +196,7 @@ public class FragmentCloset extends Fragment{
         } else if(requestCode == PICK_FROM_CAMERA && resultCode==RESULT_OK) {
             Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
             ExifInterface exif = null;
+            Log.d("~~~", imageFilePath);
 
             try {
                 exif = new ExifInterface(imageFilePath);
