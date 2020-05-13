@@ -23,9 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,7 +40,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class FragmentCloset extends Fragment{
@@ -57,9 +53,11 @@ public class FragmentCloset extends Fragment{
     private static final int PICK_FROM_ALBUM = 1;
 
     private ImageView imageView;
+    private ImageView dbImageView;
     private Button cameraBtn;
     private Button albumBtn;
     private Button connectServ;
+    DBHelper databaseHelper;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -80,7 +78,10 @@ public class FragmentCloset extends Fragment{
         cameraBtn = (Button)view.findViewById(R.id.cameraButton);
         albumBtn = (Button)view.findViewById(R.id.albumButton);
         imageView = (ImageView)view.findViewById(R.id.capture);
+        dbImageView = (ImageView)view.findViewById(R.id.dbRead);
+
         connectServ = (Button)view.findViewById(R.id.connectServer);
+        databaseHelper = new DBHelper(getActivity());
 
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -131,7 +132,6 @@ public class FragmentCloset extends Fragment{
 
         //Read Bitmap
         Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath, options);
-        Log.d("!!!", imageFilePath);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteArray = stream.toByteArray();
 
@@ -191,10 +191,44 @@ public class FragmentCloset extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == PICK_FROM_ALBUM && resultCode==RESULT_OK&&data!=null&&data.getData()!=null) {
             Uri selectedImageUri = data.getData();
+
+            //input data to DB
+            try {
+                databaseHelper.open();
+                InputStream iStream = mContext.getContentResolver().openInputStream(selectedImageUri);
+                byte[] inputData = imageUtils.getBytes(iStream);
+                databaseHelper.onCreateItem(inputData);
+                databaseHelper.close();
+            }catch (IOException ioe) {
+                databaseHelper.close();
+            }
+
+            //read data from DB
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        databaseHelper.openRead();
+                        final byte[] bytes = databaseHelper.onReadItem();
+                        databaseHelper.close();
+                        dbImageView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                dbImageView.setImageBitmap(imageUtils.getImage(bytes));
+                            }
+                        });
+                    } catch (Exception e) {
+                        databaseHelper.close();
+                    }
+                }
+            }).start();
+
             imageView.setImageURI(selectedImageUri);
             //imageView.setImageURI(data.getData());
         } else if(requestCode == PICK_FROM_CAMERA && resultCode==RESULT_OK) {
             Bitmap bitmap = BitmapFactory.decodeFile(imageFilePath);
+
+
             ExifInterface exif = null;
             Log.d("~~~", imageFilePath);
 
@@ -216,6 +250,7 @@ public class FragmentCloset extends Fragment{
 
             if(bitmap != null) {
                 imageView.setImageBitmap(rotate(bitmap, exifDegree));
+
             }
         }
     }
