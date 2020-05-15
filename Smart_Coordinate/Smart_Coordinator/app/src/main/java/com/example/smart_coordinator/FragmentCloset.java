@@ -33,6 +33,7 @@ import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -125,6 +126,7 @@ public class FragmentCloset extends Fragment{
         String portNumber = portNumberView.getText().toString();
 
         String postUrl= "http://"+ipv4Address+":"+portNumber+"/";
+        String htmlUrl = "http://"+ipv4Address+":"+portNumber+"/imgToHtml";
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -144,6 +146,13 @@ public class FragmentCloset extends Fragment{
         responseText.setText("Please wait ...");
 
         postRequest(postUrl, postBodyImage);
+        postRequestHtml(htmlUrl);
+    }
+
+    void postRequestHtml(String htmlUrl) {
+        Request request = new Request.Builder()
+                .url(htmlUrl)
+                .build();
     }
 
     void postRequest(String postUrl, RequestBody postBody) {
