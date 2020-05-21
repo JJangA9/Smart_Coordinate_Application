@@ -9,6 +9,7 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
+    android:background="@drawable/gradation"
     >
 
     <TextView
@@ -16,4 +17,5 @@
         android:text = "hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 </ScrollView>
