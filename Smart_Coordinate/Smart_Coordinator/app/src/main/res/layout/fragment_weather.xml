@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,13 +9,306 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:background="@drawable/gradation"
-    >
+    android:background="@drawable/gradation">
+
+
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/sunny"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"/>
 
     <TextView
-        android:id = "@+id/weather_info"
-        android:text = "hello"
+        android:id = "@+id/temperature"
+        android:text = "15\u00B0 / 25\u00B0"
+        android:textSize="40sp"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weatherIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"/>
 
-</ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/outline_white"
+        android:layout_below="@id/temperature"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/timeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFF"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/temperatureTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\u00B0C"
+            android:textSize="20sp"
+            android:textColor="#FFFF"
+            android:textStyle="bold"
+            android:layout_toStartOf="@id/secondTemper"
+            android:layout_below="@id/secondWeatherIcon"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/humidityTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Humidity"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="#FFFF"
+            android:layout_below="@id/temperatureTxt"
+            android:layout_marginTop="13dp"
+            android:layout_marginStart="5dp"/>
+
+        <!-- second weather -->
+        <TextView
+            android:id="@+id/secondTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23:00"
+            android:textColor="#FFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/timeTxt"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <View
+            android:layout_width="55dp"
+            android:layout_height="2dp"
+            android:layout_below="@id/secondTime"
+            android:background="#FFFF"
+            android:layout_toEndOf="@id/timeTxt"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:id="@+id/secondWeatherIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/rainny"
+            android:layout_below="@id/secondTime"
+            android:layout_toEndOf="@id/timeTxt"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/secondTemper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15\u00B0"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/timeTxt"
+            android:layout_below="@id/secondWeatherIcon"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/secondHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/timeTxt"
+            android:layout_below="@id/secondTemper"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- third weather-->
+        <TextView
+            android:id="@+id/thirdTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="02:00"
+            android:textColor="#FFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/secondTime"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <View
+            android:layout_width="55dp"
+            android:layout_height="2dp"
+            android:layout_below="@id/thirdTime"
+            android:background="#FFFF"
+            android:layout_toEndOf="@id/secondTime"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:id="@+id/thirdWeatherIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/sunny"
+            android:layout_below="@id/thirdTime"
+            android:layout_toEndOf="@id/secondTime"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/thirdTemper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13\u00B0"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/secondTime"
+            android:layout_below="@id/thirdWeatherIcon"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/thirdHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="40"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/secondTime"
+            android:layout_below="@id/thirdTemper"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"/>
+
+
+        <!-- fourth weather -->
+        <TextView
+            android:id="@+id/fourthTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="05:00"
+            android:textColor="#FFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/thirdTime"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <View
+            android:layout_width="55dp"
+            android:layout_height="2dp"
+            android:layout_below="@id/fourthTime"
+            android:background="#FFFF"
+            android:layout_toEndOf="@id/thirdTime"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:id="@+id/fourthWeatherIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/sunny"
+            android:layout_below="@id/fourthTime"
+            android:layout_toEndOf="@id/thirdTime"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/fourthTemper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12\u00B0"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/thirdTime"
+            android:layout_below="@id/fourthWeatherIcon"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/fourthHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="40"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/thirdTime"
+            android:layout_below="@id/fourthTemper"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- fifth weather -->
+        <TextView
+            android:id="@+id/fifthTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00"
+            android:textColor="#FFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/fourthTime"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <View
+            android:layout_width="55dp"
+            android:layout_height="2dp"
+            android:layout_below="@id/fifthTime"
+            android:background="#FFFF"
+            android:layout_toEndOf="@id/fourthTime"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:id="@+id/fifthWeatherIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/snow"
+            android:layout_below="@id/fifthTime"
+            android:layout_toEndOf="@id/fourthTime"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/fifthTemper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13\u00B0"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/fourthTime"
+            android:layout_below="@id/fifthWeatherIcon"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/fifthHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="40"
+            android:textColor="#FFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/fourthTime"
+            android:layout_below="@id/fifthTemper"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
