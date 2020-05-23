@@ -18,19 +18,19 @@
         android:layout_height="100dp"
         android:src="@drawable/sunny"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"/>
+        android:layout_marginTop="100dp"/>
 
     <TextView
         android:id = "@+id/temperature"
-        android:text = "15\u00B0 / 25\u00B0"
+        android:text = "15\u00B0"
         android:textSize="40sp"
         android:textColor="#FFFF"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/weatherIcon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="145dp"/>
 
 
     <RelativeLayout
@@ -38,7 +38,7 @@
         android:layout_height="230dp"
         android:background="@drawable/outline_white"
         android:layout_below="@id/temperature"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="80dp">
 
         <TextView
             android:id="@+id/timeTxt"
