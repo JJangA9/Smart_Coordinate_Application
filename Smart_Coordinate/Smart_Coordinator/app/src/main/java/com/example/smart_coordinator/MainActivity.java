@@ -14,17 +14,19 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.support.design.widget.BottomNavigationView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentCloset.closetBtnListener{
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentCloset fragmentCloset = new FragmentCloset();
     private FragmentCalendar fragmentCalendar = new FragmentCalendar();
     private FragmentWeather fragmentWeather = new FragmentWeather();
+    private FragmentCloset_Data fragmentCloset_data = new FragmentCloset_Data();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,15 @@ public class MainActivity extends AppCompatActivity {
         parent.setContentInsetsAbsolute(0,0);
         return true;
     }
-        //bottom navigation
+
+    @Override
+    public void onButtonClicked() {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frameLayout, fragmentCloset_data).commit();
+        transaction.addToBackStack(null);
+    }
+
+    //bottom navigation
         class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
