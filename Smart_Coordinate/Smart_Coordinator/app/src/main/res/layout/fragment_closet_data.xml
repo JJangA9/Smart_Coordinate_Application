@@ -5,35 +5,150 @@
 
     <Button
         android:id="@+id/cameraButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="270dp"
         android:layout_marginTop="10dp"
-        android:text="camera" />
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@drawable/camerabtn"/>
 
     <Button
         android:id="@+id/albumButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
         android:layout_toEndOf="@id/cameraButton"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:text="album" />
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@drawable/albumbtn"/>
+
+    <ImageView
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/albumButton"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/category2"/>
 
     <RelativeLayout
         android:layout_width="340dp"
-        android:layout_height="520dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/cameraButton"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/outline_black">
+        android:layout_marginTop="100dp">
 
         <ImageView
             android:id="@+id/dbRead"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="5dp"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead2"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead3"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead2"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead4"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/dbRead"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead5"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead4"
+            android:layout_below="@id/dbRead"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead6"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead5"
+            android:layout_below="@id/dbRead"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead7"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/dbRead4"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead8"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead7"
+            android:layout_below="@id/dbRead4"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead9"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead8"
+            android:layout_below="@id/dbRead4"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead10"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/dbRead7"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead11"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead10"
+            android:layout_below="@id/dbRead7"
+            android:src="@drawable/imageshow"/>
+
+        <ImageView
+            android:id="@+id/dbRead12"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/dbRead11"
+            android:layout_below="@id/dbRead7"
+            android:src="@drawable/imageshow"/>
 
     </RelativeLayout>
 
