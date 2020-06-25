@@ -43,7 +43,8 @@
             android:layout_height="130dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/clothes1"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/dbRead2"
@@ -52,7 +53,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/dbRead"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/clothes2"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/dbRead3"
@@ -61,7 +63,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/dbRead2"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/clothes3"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/dbRead4"
@@ -70,7 +73,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:layout_below="@id/dbRead"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/clothes4"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/dbRead5"
@@ -80,7 +84,8 @@
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/dbRead4"
             android:layout_below="@id/dbRead"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/clothes5"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/dbRead6"
@@ -90,7 +95,8 @@
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/dbRead5"
             android:layout_below="@id/dbRead"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/imageshow"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/dbRead7"
@@ -124,31 +130,31 @@
         <ImageView
             android:id="@+id/dbRead10"
             android:layout_width="110dp"
-            android:layout_height="130dp"
+            android:layout_height="80dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:layout_below="@id/dbRead7"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/imageshow2"/>
 
         <ImageView
             android:id="@+id/dbRead11"
             android:layout_width="110dp"
-            android:layout_height="130dp"
+            android:layout_height="80dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/dbRead10"
             android:layout_below="@id/dbRead7"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/imageshow2"/>
 
         <ImageView
             android:id="@+id/dbRead12"
             android:layout_width="110dp"
-            android:layout_height="130dp"
+            android:layout_height="80dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/dbRead11"
             android:layout_below="@id/dbRead7"
-            android:src="@drawable/imageshow"/>
+            android:src="@drawable/imageshow2"/>
 
     </RelativeLayout>
 

@@ -1,17 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
 
-
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:mcv_selectionColor="#a9dbf0cb"
         app:mcv_showOtherDates="defaults" />
 
-</LinearLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@android:color/background_light"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="55dp"
+        app:layout_behavior = "@string/bottom_sheet_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#E7E6E6"/>
+
+            <RelativeLayout
+                android:id="@+id/layout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="320dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/calendar_textborder"/>
+
+                <TextView
+                    android:id="@+id/exercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="운동하기"
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="40dp"/>
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:src="@drawable/calendar_circle1"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginStart="15dp"/>
+
+                <TextView
+                    android:id="@+id/exerciseTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오후 2시 - 오후 4시"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/exercise"
+                    android:layout_marginStart="40dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="320dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/calendar_textborder"/>
+
+                <TextView
+                    android:id="@+id/dinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="저녁 약속"
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="40dp"/>
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:src="@drawable/calendar_circle2"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginStart="15dp"/>
+
+                <TextView
+                    android:id="@+id/dinnerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dinner"
+                    android:text="오후 7시 - 오후 9시"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="40dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="320dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/calendar_textborder"/>
+
+                <TextView
+                    android:id="@+id/teamProject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="팀프로젝트 회의"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="40dp"/>
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:src="@drawable/calendar_circle3"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginStart="15dp"/>
+
+                <TextView
+                    android:id="@+id/teamprojectTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/teamProject"
+                    android:text="오후 10시 - 오후 11시"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="40dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/plusbtn"
+        app:backgroundTint="#000000"/>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

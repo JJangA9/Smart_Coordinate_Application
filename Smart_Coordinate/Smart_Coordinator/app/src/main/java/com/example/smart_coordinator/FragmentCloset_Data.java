@@ -1,6 +1,7 @@
 package com.example.smart_coordinator;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -55,6 +56,15 @@ public class FragmentCloset_Data extends Fragment {
     private Button cameraBtn;
     private Button albumBtn;
     private ImageView dbImageView;
+    private ImageView dbImageView2;
+    private ImageView dbImageView3;
+    private ImageView dbImageView4;
+    private ImageView dbImageView5;
+    private ImageView dbImageView6;
+
+    private customDialog customdialog;
+    private customDialog2 customdialog2;
+    //private customDialogListener customdialogListener;
     DBHelper databaseHelper;
 
     @Override
@@ -62,7 +72,18 @@ public class FragmentCloset_Data extends Fragment {
         super.onAttach(context);
         this.mContext = (Activity) context;
         con = (Context) mContext;
+
+        /*try {
+            customdialogListener = (customDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement BuyFoodBottomSheetListener");
+        }*/
     }
+
+    /*public interface customDialogListener {
+        void onOKButtonClicked();
+    }*/
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +98,12 @@ public class FragmentCloset_Data extends Fragment {
         albumBtn = (Button)view.findViewById(R.id.albumButton);
 
         dbImageView = (ImageView)view.findViewById(R.id.dbRead);
+        dbImageView2 = (ImageView)view.findViewById(R.id.dbRead2);
+        dbImageView3 = (ImageView)view.findViewById(R.id.dbRead3);
+        dbImageView4 = (ImageView)view.findViewById(R.id.dbRead4);
+        dbImageView5 = (ImageView)view.findViewById(R.id.dbRead5);
+        dbImageView6 = (ImageView)view.findViewById(R.id.dbRead6);
+
         databaseHelper = new DBHelper(getActivity());
 
         cameraBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +122,7 @@ public class FragmentCloset_Data extends Fragment {
                         startActivityForResult(cameraIntent, PICK_FROM_CAMERA);
                     }
 
-                    connectServer();
+                    //connectServer();
                 }
             }
         });
@@ -108,8 +135,64 @@ public class FragmentCloset_Data extends Fragment {
             }
         });
 
+        //이미지 누르면 다이얼로그 띄우기
+        dbImageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customdialog = new customDialog(mContext, OkListener, CancelListener);
+                customdialog.show();
+            }
+        });
+
         return view;
     }
+
+    private View.OnClickListener OkListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            //customdialogListener.onOKButtonClicked();
+            customdialog.dismiss();
+
+            //Intent intent = new Intent(FragmentCloset_Data.this, ProgressDialogActivity.class);
+            //startActivity(intent);
+
+            ProgressDialog progressDialog = new ProgressDialog(con);
+            progressDialog.setMessage("ProgressDialog running...");
+            progressDialog.setCancelable(true);
+            progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Horizontal);
+
+            progressDialog.show();
+            try {
+                Thread.sleep(2000); // 2초 지속
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            progressDialog.dismiss();
+
+            customdialog2 = new customDialog2(mContext, OkListener2, CancelListener2);
+            customdialog2.show();
+        }
+    };
+
+    private View.OnClickListener CancelListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            customdialog.dismiss();
+        }
+    };
+
+    //두번째 dialog
+    private View.OnClickListener OkListener2 = new View.OnClickListener() {
+        public void onClick(View v) {
+            //customdialogListener.onOKButtonClicked();
+            customdialog2.dismiss();
+        }
+    };
+
+    private View.OnClickListener CancelListener2 = new View.OnClickListener() {
+        public void onClick(View v) {
+            customdialog2.dismiss();
+        }
+    };
 
     void connectServer(){
         String ipv4Address = "192.168.219.106";

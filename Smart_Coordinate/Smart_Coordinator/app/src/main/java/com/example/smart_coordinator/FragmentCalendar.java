@@ -8,12 +8,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -32,6 +35,11 @@ public class FragmentCalendar extends Fragment {
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     Cursor cursor;
     MaterialCalendarView materialCalendarView;
+    private BottomSheetBehavior mBottomSheetBehavior;
+
+    private TextView exercise, exerciseTime;
+    private TextView dinner, dinnerTime;
+    private TextView teamProject, teamProjectTime;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -43,6 +51,16 @@ public class FragmentCalendar extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = null;
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
+
+        View bottomSheet = view.findViewById(R.id.bottom_sheet);
+        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        exercise = view.findViewById(R.id.exercise);
+        exerciseTime = view.findViewById(R.id.exerciseTime);
+        dinner = view.findViewById(R.id.dinner);
+        dinnerTime = view.findViewById(R.id.dinnerTime);
+        teamProject = view.findViewById(R.id.teamProject);
+        teamProjectTime = view.findViewById(R.id.teamprojectTime);
 
         materialCalendarView = (MaterialCalendarView)view.findViewById(R.id.calendarView);
         materialCalendarView.state().edit()
@@ -77,10 +95,32 @@ public class FragmentCalendar extends Fragment {
                 Log.i("shot_Day test", shot_Day + "");
                 materialCalendarView.clearSelection();
                 //Toast.makeText(getActivity().getApplicationContext(), shot_Day, Toast.LENGTH_LONG).show();
+
+                exercise.setText("점심 약속");
+                exerciseTime.setText("오후 1시 - 오후 2시");
+
+                dinner.setText("헬스 PT");
+                dinnerTime.setText("오후 3시 - 오후 4시");
+
+                teamProject.setText("과제 제출");
+                teamProjectTime.setText("오후 8시 - 오후 9시");
+
+                //bottom sheet expand
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
 
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new FABClickListener());
+
         return view;
+    }
+
+    class FABClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            //Toast.makeText(mContext, "wow!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
